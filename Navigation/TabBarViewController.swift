@@ -15,6 +15,8 @@ class TabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        tabBar.backgroundColor = .white
         setupControllers()
     }
     
@@ -22,13 +24,14 @@ class TabBarViewController: UITabBarController {
                 
         let profileController = UINavigationController(rootViewController: firstVC)
         firstVC.tabBarItem.title = "Профиль"
-        firstVC.tabBarItem.image = UIImage(systemName: "person.crop.square.fill")
-        
+        firstVC.tabBarItem.image = UIImage(systemName: "person")
+        firstVC.navigationItem.title = "Профиль"
+                        
         let feedController = UINavigationController(rootViewController: secondVC)
         secondVC.tabBarItem.title = "Лента новостей"
-        secondVC.tabBarItem.image = UIImage(systemName: "rectangle.and.hand.point.up.left")
-        
-        viewControllers = [profileController, feedController]
+        secondVC.tabBarItem.image = UIImage(systemName: "house")
+        secondVC.navigationItem.title = "Лента новостей"
+        viewControllers = [feedController, profileController]
     }
     
 }
