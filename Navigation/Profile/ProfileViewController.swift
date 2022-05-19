@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class ProfileViewController: UIViewController {
 
     private lazy var headerView: ProfileHeaderView = {
@@ -40,17 +39,13 @@ class ProfileViewController: UIViewController {
     private func headerViewSetup() {
         self.view.addSubview(self.headerView)
         self.view.addSubview(setTitleButton)
-        self.view.backgroundColor = .lightGray
-        
-        let topConstraint = self.headerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor)
-        let leadingConstraint = self.headerView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor)
-        let trailingConstraint = self.headerView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
-        self.heightConstraint = self.headerView.heightAnchor.constraint(equalToConstant: 220)
+        self.view.backgroundColor = .systemGray4
         
         NSLayoutConstraint.activate([
-            topConstraint,
-            leadingConstraint,
-            trailingConstraint,
+            headerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 220),
             self.heightConstraint
         ].compactMap({$0}))
     }
@@ -58,16 +53,13 @@ class ProfileViewController: UIViewController {
     private func setTitleButtonSetup() {
         self.view.addSubview(setTitleButton)
         
-        let setTitleButtonHeightConstraint = self.setTitleButton.heightAnchor.constraint(equalToConstant: 50)
-        let setTitleButtonBottomConstraint = self.setTitleButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
-        let setTitleButtonLeadingConstraint = self.setTitleButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor)
-        let setTitleButtonTrailingConstraint = self.setTitleButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
+      
         
         NSLayoutConstraint.activate([
-            setTitleButtonHeightConstraint,
-            setTitleButtonBottomConstraint,
-            setTitleButtonLeadingConstraint,
-            setTitleButtonTrailingConstraint
+            setTitleButton.heightAnchor.constraint(equalToConstant: 50),
+            setTitleButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            setTitleButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            setTitleButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
         ])
     }
     
