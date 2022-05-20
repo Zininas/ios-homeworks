@@ -14,80 +14,106 @@ class ProfileViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-    private lazy var setTitleButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Set title", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 4
-        button.addTarget(self, action: #selector(didTapSetTitleButton), for: .touchUpInside)
-        return button
+        
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "ArticleCell")
+        tableView.backgroundColor = .clear
+        tableView.backgroundColor = .systemGray6
+        tableView.layer.borderColor = UIColor.lightGray.cgColor
+        tableView.layer.borderWidth = 0.5
+        
+        return tableView
     }()
     
-    private var heightConstraint: NSLayoutConstraint?
+    private var headerHeight: CGFloat = 220
     
+    private var myPost: [Post] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        headerViewSetup()
-        setTitleButtonSetup()
-       
+        setupTableView()
+        addMyPost()
+        
     }
-     
-    private func headerViewSetup() {
-        self.view.addSubview(self.headerView)
-        self.view.addSubview(setTitleButton)
-        self.view.backgroundColor = .systemGray4
+        
+    private func setupTableView() {
+        self.view.addSubview(self.tableView)
         
         NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 220),
-            self.heightConstraint
-        ].compactMap({$0}))
-    }
-    
-    private func setTitleButtonSetup() {
-        self.view.addSubview(setTitleButton)
-        
-      
-        
-        NSLayoutConstraint.activate([
-            setTitleButton.heightAnchor.constraint(equalToConstant: 50),
-            setTitleButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
-            setTitleButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            setTitleButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
         ])
+
     }
     
-    @objc func didTapSetTitleButton() {
-        let ac = UIAlertController(title: "Set title", message: "Enter new title", preferredStyle: .alert)
-        ac.addTextField()
+    private func addMyPost() {
+       
+        self.myPost.append(Post(author: "Николай II (1868–1918) - последний российский император.", description: "Николай II (1868–1918) - последний российский император, сын Александра III и Марии Федоровны. Вступил на престол в 1894 году и в первом же публичном выступлении в ответ на слухи об ожидаемой либерализации заявил: «Пусть же все знают, что я, посвящая все силы благу народному, буду охранять начало самодержавия так же твердо и неуклонно, как охранял его мой незабвенный покойный родитель». Царствование Николая II ознаменовалось быстрым экономическим развитием страны, расцветом культурной жизни, началом осуществления столыпинской аграрной реформы и учреждением Государственной думы. Однако поражение в русско-японской войне и обострение социальных противоречий привело к первой русской революции 1905 года, а участие в составе Антанты в мировой империалистической войне закончилось Февралем 1917 года и отречением царя от престола. После Октябрьской революции был расстрелян вместе с семьей в Екатеринбурге. Сбылось пророчество выдающегося русского историка В. О. Ключевского и предвидение Ф. Энгельса, утверждавших, что наследнику трона цесаревичу Алексею не суждено царствовать. Русской православной церковью Николай II, его жена и пятеро детей причислены к лику мучеников, канонизированы и в настоящий момент почитаются как «Царственные страстотерпцы».", image: UIImage(named: "Николай II")!, likes: 178889, views: 75533211))
+        self.myPost.append(Post(author: "Торжественное заседание Государственного совета 7 мая 1901 года, в день столетнего юбилея со дня его учреждения.", description: "Все члены учрежденного Александром I Государственного совета присутствуют в Круглом зале Мариинского дворца. На центральном месте Николай II и представители императорского дома, занимающие важнейшие посты в государстве. Справа от царя — его младший брат, в то время наследник престола цесаревич Михаил, слева — великий князь Михаил Николаевич (брат Александра II). Поблизости от царской семьи — председатель Комитета министров И. Н. Дурново, министр иностранных дел В. Н. Ламздорф, оберпрокурор Святейшего Синода К. П. Победоносцев и другие. Всего на портрете изображен восемьдесят один член Совета, среди них С. Ю. Витте, П. П. Семенов-Тян-Шанский и др.", image: UIImage(named: "Николай II")!, likes: 178889, views: 75533211))
+        self.myPost.append(Post(author: "17 октября 1905 года.", description: "К началу XX века Российская империя представляла собой абсолютную монархию и входила в число пяти крупнейших промышленных держав мира. Однако почти все слои русского общества были недовольны своим положением: буржуазия и интеллигенция желали конституции и гражданских свобод, крестьяне — помещичьей земли, рабочие — достойных условий труда и повышения заработной платы. Последней каплей стало поражение в русско-японской войне. 9 января 1905 года к Зимнему дворцу в Петербурге с петицией направились тысячи демонстрантов во главе с лидером профсоюзного движения священником Георгием Гапоном, которые были расстреляны войсками. «Кровавое воскресенье» положило начало волнениям, переросшим к осени во Всероссийскую политическую стачку. Это вынудило Николая II издать 17/30 октября Манифест, которым были дарованы гражданские права и свободы, а также учрежден парламент — Государственная дума с законодательными функциями. Вскоре началась столыпинская земельная реформа. Страна вступила в новую фазу своего политического развития.", image: UIImage(named: "Николай II")!, likes: 178889, views: 75533211))
+        self.myPost.append(Post(author: "17 октября 1905 года.", description: "К началу XX века Российская империя представляла собой абсолютную монархию и входила в число пяти крупнейших промышленных держав мира. Однако почти все слои русского общества были недовольны своим положением: буржуазия и интеллигенция желали конституции и гражданских свобод, крестьяне — помещичьей земли, рабочие — достойных условий труда и повышения заработной платы. Последней каплей стало поражение в русско-японской войне. 9 января 1905 года к Зимнему дворцу в Петербурге с петицией направились тысячи демонстрантов во главе с лидером профсоюзного движения священником Георгием Гапоном, которые были расстреляны войсками. «Кровавое воскресенье» положило начало волнениям, переросшим к осени во Всероссийскую политическую стачку. Это вынудило Николая II издать 17/30 октября Манифест, которым были дарованы гражданские права и свободы, а также учрежден парламент — Государственная дума с законодательными функциями. Вскоре началась столыпинская земельная реформа. Страна вступила в новую фазу своего политического развития.", image: UIImage(named: "Николай II")!, likes: 178889, views: 75533211))
         
-        let okAction = UIAlertAction(title: "Ok", style: .default) { [weak self, weak ac] _ in
-            guard let newTitle = ac?.textFields?[0].text else {return}
-            if newTitle.isEmpty {
-                let ac = UIAlertController(title: "You should enter something", message: nil, preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                ac.addAction(okAction)
-                self?.present(ac, animated: true)
-            }
-            self?.headerView.changeTitle(title: newTitle)
-        }
-        ac.addAction(okAction)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        ac.addAction(cancelAction)
-        
-        present(ac, animated: true)
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
+}
+
+extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.myPost.count
+    }
+            
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? PostTableViewCell else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
+            return cell
+        }
+        let article = self.myPost[indexPath.row]
+        let viewModel = PostTableViewCell.ViewModel(author: article.author,
+                                                    description: article.description,
+                                                    image: article.image,
+                                                    likes: article.likes,
+                                                    views: article.views)
+        cell.setup(with: viewModel)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var headerView = UIView()
+        if section == 0 {
+            headerView = ProfileHeaderView()
+        }
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return  headerHeight
+    }
+}
+
+extension ProfileViewController: ProfileHeaderViewProtocol {
+    
+    func didTapStatusButton(textFieldIsVisible: Bool, completion: @escaping () -> Void) {
+        self.headerHeight = textFieldIsVisible ? 220 : 265
+        UIView.animate(withDuration: 0.3, delay: 0.1) {
+            self.view.layoutIfNeeded()
+        } completion: { _ in
+            completion()
+        }
+        self.tableView.reloadData()
+    }
 }
 

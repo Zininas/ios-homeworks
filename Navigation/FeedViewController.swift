@@ -46,7 +46,7 @@ class FeedViewController: UIViewController {
         return button
     }()
     
-    private var post = Post(title: "")
+//    private var post = Post(title: "")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +74,7 @@ class FeedViewController: UIViewController {
     
     @objc private func buttonTapped() {
         let postVC = PostViewController()
-        postVC.post = post
+//        postVC.post = post
         self.navigationController?.pushViewController(postVC, animated: true)
     }
 }

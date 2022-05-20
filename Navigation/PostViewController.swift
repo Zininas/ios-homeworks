@@ -7,10 +7,6 @@
 
 import UIKit
 
-struct Post {
-    var title: String
-}
-
 class PostViewController: UIViewController {
     
     var post: Post!

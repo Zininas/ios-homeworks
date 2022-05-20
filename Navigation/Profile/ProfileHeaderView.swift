@@ -48,7 +48,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     private lazy var setStatusButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Show status", for: .normal)
+        button.setTitle("Set status", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 4
@@ -71,6 +71,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         textField.layer.masksToBounds = true
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.black.cgColor
+        textField.placeholder = "Set your status..."
         textField.indent(size: 8)
         return textField
     }()
@@ -121,8 +122,8 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         NSLayoutConstraint.activate([
             infoStackView.topAnchor.constraint(equalTo: self.topAnchor),
             infoStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -105),
-            infoStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            infoStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            infoStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            infoStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             
             avatarImageView.heightAnchor.constraint(equalTo: self.avatarImageView.widthAnchor, multiplier: 1.0),
             
@@ -132,7 +133,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
             setStatusButton.trailingAnchor.constraint(equalTo: self.infoStackView.trailingAnchor),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50),
             
-            statusTextField.topAnchor.constraint(equalTo: self.infoStackView.bottomAnchor, constant: 10),
+            statusTextField.topAnchor.constraint(equalTo: self.infoStackView.bottomAnchor),
             statusTextField.leadingAnchor.constraint(equalTo: self.statusLabel.leadingAnchor),
             statusTextField.trailingAnchor.constraint(equalTo: self.infoStackView.trailingAnchor),
             statusTextField.heightAnchor.constraint(equalToConstant: 35),
@@ -149,20 +150,14 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
     }
     
     @objc private func didTapStatusButton() {
-        
-       
-            self.setStatusButtonTopConstraint = self.setStatusButton.topAnchor.constraint(equalTo: self.infoStackView.bottomAnchor, constant: 10)
-            
-           
+               
+            self.setStatusButtonTopConstraint = self.setStatusButton.topAnchor.constraint(equalTo: self.infoStackView.bottomAnchor, constant: 10)                     
             self.statusLabel.text = self.statusTextField.text
             if self.statusLabel.text == "" {
                 self.statusLabel.text = self.statusText
             }
         }
-        
-    func changeTitle(title: String) {
-        self.fullNameLabel.text = title
-    }
+    
 }
 
 
