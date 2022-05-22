@@ -100,36 +100,35 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func configureSubviews() {
-        self.view.addSubview(self.scrollView)
-        self.scrollView.addSubview(self.contentView)
-        self.contentView.addSubview(self.logInButton)
-        self.contentView.addSubview(self.logoImageView)
-        self.contentView.addSubview(self.loginPasswordStackView)
-        self.loginPasswordStackView.addArrangedSubview(self.loginTextField)
-        self.loginPasswordStackView.addArrangedSubview(self.passwordTextField)
+        self.view.addSubview(scrollView)
+        self.scrollView.addSubview(contentView)
+        self.contentView.addSubview(logInButton)
+        self.contentView.addSubview(logoImageView)
+        self.contentView.addSubview(loginPasswordStackView)
+        self.loginPasswordStackView.addArrangedSubview(loginTextField)
+        self.loginPasswordStackView.addArrangedSubview(passwordTextField)
     }
     
     private func setupConstraints() {
 
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-            scrollView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            scrollView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
+            scrollView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             
             contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
             contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
-            contentView.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
-            contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor),
             contentView.heightAnchor.constraint(equalTo: self.scrollView.heightAnchor),
-          
-            logoImageView.topAnchor.constraint(lessThanOrEqualTo: self.contentView.topAnchor, constant: 120),
+            contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor),
+            contentView.centerXAnchor.constraint(equalTo: self.scrollView.centerXAnchor),
+                      
+            logoImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 120),
             logoImageView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
             logoImageView.widthAnchor.constraint(equalToConstant: 100),
             logoImageView.heightAnchor.constraint(equalToConstant: 100),
-            
+                  
             loginPasswordStackView.topAnchor.constraint(equalTo: self.logoImageView.bottomAnchor, constant: 120),
-            loginPasswordStackView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
             loginPasswordStackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
             loginPasswordStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
             loginPasswordStackView.heightAnchor.constraint(equalToConstant: 100),
