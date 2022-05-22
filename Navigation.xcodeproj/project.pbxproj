@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1B5B79B2836322900B52FC9 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B5B79A2836322900B52FC9 /* LogInViewController.swift */; };
 		A1DCC6A2282C40D2007FB6C9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DCC6A1282C40D2007FB6C9 /* ProfileViewController.swift */; };
 		A1DCC6A6282C4322007FB6C9 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DCC6A5282C4322007FB6C9 /* FeedViewController.swift */; };
 		A1DCC6A8282C447B007FB6C9 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DCC6A7282C447B007FB6C9 /* PostViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A1B5B79A2836322900B52FC9 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		A1DCC6A1282C40D2007FB6C9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A1DCC6A5282C4322007FB6C9 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		A1DCC6A7282C447B007FB6C9 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			children = (
 				A1E74893282E703600768B39 /* ProfileHeaderView.swift */,
 				A1DCC6A1282C40D2007FB6C9 /* ProfileViewController.swift */,
+				A1B5B79A2836322900B52FC9 /* LogInViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 				A1EBAB49282AE51200278AD9 /* TabBarViewController.swift in Sources */,
 				A1DCC6A6282C4322007FB6C9 /* FeedViewController.swift in Sources */,
 				A1E2FB022827F48D004051DC /* AppDelegate.swift in Sources */,
+				A1B5B79B2836322900B52FC9 /* LogInViewController.swift in Sources */,
 				A1E74894282E703600768B39 /* ProfileHeaderView.swift in Sources */,
 				A1DCC6AA282C7080007FB6C9 /* InfoViewController.swift in Sources */,
 				A1DCC6A8282C447B007FB6C9 /* PostViewController.swift in Sources */,

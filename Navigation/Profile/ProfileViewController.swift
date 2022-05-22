@@ -7,44 +7,87 @@
 
 import UIKit
 
-
 class ProfileViewController: UIViewController {
 
-    let headerView = ProfileHeaderView()
+    private lazy var headerView: ProfileHeaderView = {
+        let view = ProfileHeaderView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var setTitleButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Set title", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 4
+        button.addTarget(self, action: #selector(didTapSetTitleButton), for: .touchUpInside)
+        return button
+    }()
+    
+    private var heightConstraint: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(headerView)
+        
+        headerViewSetup()
+        setTitleButtonSetup()
        
     }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        headerViewSetup()
+     
+    private func headerViewSetup() {
+        self.view.addSubview(self.headerView)
+        self.view.addSubview(setTitleButton)
+        self.view.backgroundColor = .systemGray4
+        
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 220),
+            self.heightConstraint
+        ].compactMap({$0}))
     }
     
-    private func headerViewSetup() {
-        headerView.translatesAutoresizingMaskIntoConstraints = false
+    private func setTitleButtonSetup() {
+        self.view.addSubview(setTitleButton)
+        
+      
+        
         NSLayoutConstraint.activate([
-            headerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            headerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            headerView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-            headerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            headerView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+            setTitleButton.heightAnchor.constraint(equalToConstant: 50),
+            setTitleButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            setTitleButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            setTitleButton.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
         ])
+    }
+    
+    @objc func didTapSetTitleButton() {
+        let ac = UIAlertController(title: "Set title", message: "Enter new title", preferredStyle: .alert)
+        ac.addTextField()
+        
+        let okAction = UIAlertAction(title: "Ok", style: .default) { [weak self, weak ac] _ in
+            guard let newTitle = ac?.textFields?[0].text else {return}
+            if newTitle.isEmpty {
+                let ac = UIAlertController(title: "You should enter something", message: nil, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                ac.addAction(okAction)
+                self?.present(ac, animated: true)
+            }
+            self?.headerView.changeTitle(title: newTitle)
+        }
+        ac.addAction(okAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        ac.addAction(cancelAction)
+        
+        present(ac, animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-    func hideKeyboard() {
-        headerView.statusTextField.resignFirstResponder()
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        hideKeyboard()
-        return true
-    }
 }
 
