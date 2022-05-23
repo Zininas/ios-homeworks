@@ -7,17 +7,13 @@
 
 import UIKit
 
-struct Post {
-    var title: String
-}
-
 class PostViewController: UIViewController {
     
-    var post: Post?
+    var post: Post!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBlue
+        view.backgroundColor = .white
         makeBarItem()
     }
     private func makeBarItem() {
