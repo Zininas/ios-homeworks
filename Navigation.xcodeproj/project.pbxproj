@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A179D2F22837A25000C02E7A /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A179D2F12837A25000C02E7A /* PostTableViewCell.swift */; };
+		A179D2F42837C60700C02E7A /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A179D2F32837C60700C02E7A /* Protocols.swift */; };
+		A179D2F62837C8BC00C02E7A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A179D2F52837C8BC00C02E7A /* Post.swift */; };
+		A1B5B79B2836322900B52FC9 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B5B79A2836322900B52FC9 /* LogInViewController.swift */; };
 		A1DCC6A2282C40D2007FB6C9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DCC6A1282C40D2007FB6C9 /* ProfileViewController.swift */; };
 		A1DCC6A6282C4322007FB6C9 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DCC6A5282C4322007FB6C9 /* FeedViewController.swift */; };
 		A1DCC6A8282C447B007FB6C9 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DCC6A7282C447B007FB6C9 /* PostViewController.swift */; };
@@ -19,6 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A179D2F12837A25000C02E7A /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		A179D2F32837C60700C02E7A /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		A179D2F52837C8BC00C02E7A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		A1B5B79A2836322900B52FC9 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		A1DCC6A1282C40D2007FB6C9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A1DCC6A5282C4322007FB6C9 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		A1DCC6A7282C447B007FB6C9 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +73,7 @@
 				A1E74892282E6F7E00768B39 /* Profile */,
 				A1E2FB012827F48D004051DC /* AppDelegate.swift */,
 				A1DCC6A7282C447B007FB6C9 /* PostViewController.swift */,
+				A179D2F52837C8BC00C02E7A /* Post.swift */,
 				A1EBAB48282AE51200278AD9 /* TabBarViewController.swift */,
 				A1DCC6A5282C4322007FB6C9 /* FeedViewController.swift */,
 				A1DCC6A9282C7080007FB6C9 /* InfoViewController.swift */,
@@ -79,7 +88,10 @@
 			isa = PBXGroup;
 			children = (
 				A1E74893282E703600768B39 /* ProfileHeaderView.swift */,
+				A179D2F32837C60700C02E7A /* Protocols.swift */,
 				A1DCC6A1282C40D2007FB6C9 /* ProfileViewController.swift */,
+				A179D2F12837A25000C02E7A /* PostTableViewCell.swift */,
+				A1B5B79A2836322900B52FC9 /* LogInViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -155,12 +167,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1DCC6A2282C40D2007FB6C9 /* ProfileViewController.swift in Sources */,
+				A179D2F62837C8BC00C02E7A /* Post.swift in Sources */,
 				A1EBAB49282AE51200278AD9 /* TabBarViewController.swift in Sources */,
 				A1DCC6A6282C4322007FB6C9 /* FeedViewController.swift in Sources */,
 				A1E2FB022827F48D004051DC /* AppDelegate.swift in Sources */,
+				A1B5B79B2836322900B52FC9 /* LogInViewController.swift in Sources */,
+				A179D2F42837C60700C02E7A /* Protocols.swift in Sources */,
 				A1E74894282E703600768B39 /* ProfileHeaderView.swift in Sources */,
 				A1DCC6AA282C7080007FB6C9 /* InfoViewController.swift in Sources */,
 				A1DCC6A8282C447B007FB6C9 /* PostViewController.swift in Sources */,
+				A179D2F22837A25000C02E7A /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

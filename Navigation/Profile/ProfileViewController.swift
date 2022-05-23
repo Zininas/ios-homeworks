@@ -7,44 +7,102 @@
 
 import UIKit
 
-
 class ProfileViewController: UIViewController {
 
-    let headerView = ProfileHeaderView()
+    private lazy var headerView: ProfileHeaderView = {
+        let view = ProfileHeaderView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+        
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "ArticleCell")
+        tableView.backgroundColor = .clear
+        tableView.backgroundColor = .systemGray6
+        tableView.layer.borderColor = UIColor.lightGray.cgColor
+        tableView.layer.borderWidth = 0.5
+        
+        return tableView
+    }()
     
+    private var headerHeight: CGFloat = 220
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(headerView)
-       
+        
+        setupTableView()
+        addMyPost()
+        
     }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        headerViewSetup()
-    }
-    
-    private func headerViewSetup() {
-        headerView.translatesAutoresizingMaskIntoConstraints = false
+        
+    private func setupTableView() {
+        self.view.addSubview(self.tableView)
+        
         NSLayoutConstraint.activate([
-            headerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            headerView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            headerView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-            headerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            headerView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+            tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
         ])
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-    func hideKeyboard() {
-        headerView.statusTextField.resignFirstResponder()
+}
+
+extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return myPost.count
+    }
+            
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? PostTableViewCell else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
+            return cell
+        }
+        let article = myPost[indexPath.row]
+        let viewModel = PostTableViewCell.ViewModel(author: article.author,
+                                                    description: article.description,
+                                                    image: article.image,
+                                                    likes: article.likes,
+                                                    views: article.views)
+        cell.setup(with: viewModel)
+        return cell
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        hideKeyboard()
-        return true
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var headerView = UIView()
+        if section == 0 {
+            headerView = ProfileHeaderView()
+        }
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return  headerHeight
+    }
+}
+
+extension ProfileViewController: ProfileHeaderViewProtocol {
+    
+    func didTapStatusButton(textFieldIsVisible: Bool, completion: @escaping () -> Void) {
+        self.headerHeight = textFieldIsVisible ? 220 : 265
+        UIView.animate(withDuration: 0.3, delay: 0.1) {
+            self.view.layoutIfNeeded()
+        } completion: { _ in
+            completion()
+        }
+        self.tableView.reloadData()
     }
 }
 
