@@ -15,8 +15,8 @@ class TabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        tabBar.backgroundColor = .white
+        view.backgroundColor = .systemGray6
+        tabBar.backgroundColor = .systemGray6
         setupControllers()
     }
     
@@ -26,7 +26,7 @@ class TabBarViewController: UITabBarController {
         firstVC.tabBarItem.title = "Профиль"
         firstVC.tabBarItem.image = UIImage(systemName: "person")
         firstVC.navigationItem.title = "Профиль"
-                        
+                                        
         let feedController = UINavigationController(rootViewController: secondVC)
         secondVC.tabBarItem.title = "Лента новостей"
         secondVC.tabBarItem.image = UIImage(systemName: "house")
