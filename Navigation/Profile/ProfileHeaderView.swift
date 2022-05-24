@@ -20,7 +20,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "Николай II")
-        imageView.layer.cornerRadius = 57
+        imageView.layer.cornerRadius = 50
         imageView.layer.borderWidth = 3
         imageView.clipsToBounds = true
         imageView.layer.borderColor = UIColor.white.cgColor
@@ -120,20 +120,20 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         self.labelsStackView.addArrangedSubview(self.statusLabel)
         
         NSLayoutConstraint.activate([
-            infoStackView.topAnchor.constraint(equalTo: self.topAnchor),
+            infoStackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             infoStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -105),
             infoStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             infoStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             
             avatarImageView.heightAnchor.constraint(equalTo: self.avatarImageView.widthAnchor, multiplier: 1.0),
             
-            setStatusButton.bottomAnchor.constraint(equalTo: self.infoStackView.bottomAnchor, constant: 100),
+            setStatusButton.bottomAnchor.constraint(equalTo: self.infoStackView.bottomAnchor, constant: 95),
             
             setStatusButton.leadingAnchor.constraint(equalTo: self.infoStackView.leadingAnchor),
             setStatusButton.trailingAnchor.constraint(equalTo: self.infoStackView.trailingAnchor),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50),
             
-            statusTextField.topAnchor.constraint(equalTo: self.infoStackView.bottomAnchor),
+            statusTextField.topAnchor.constraint(equalTo: self.infoStackView.bottomAnchor, constant: -10),
             statusTextField.leadingAnchor.constraint(equalTo: self.statusLabel.leadingAnchor),
             statusTextField.trailingAnchor.constraint(equalTo: self.infoStackView.trailingAnchor),
             statusTextField.heightAnchor.constraint(equalToConstant: 35),

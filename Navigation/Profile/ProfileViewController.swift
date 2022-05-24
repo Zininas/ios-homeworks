@@ -47,7 +47,7 @@ class ProfileViewController: UIViewController {
         }
         
         private func profileHeaderViewSetup() {
-            self.view.backgroundColor = .systemGray5
+            self.headerView.backgroundColor = .systemGray4
             self.view.addSubview(self.headerView)
             
             NSLayoutConstraint.activate([
@@ -63,7 +63,7 @@ class ProfileViewController: UIViewController {
             self.view.addSubview(self.tableView)
             
             NSLayoutConstraint.activate([
-                tableView.topAnchor.constraint(equalTo: self.headerView.bottomAnchor),
+                tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 220),
                 tableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
                 tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
                 tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
