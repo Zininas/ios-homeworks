@@ -29,27 +29,30 @@ class ProfileViewController: UIViewController {
     
     private var heightConstraint: NSLayoutConstraint?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         headerViewSetup()
         setTitleButtonSetup()
-       
+               
     }
      
     private func headerViewSetup() {
         self.view.addSubview(self.headerView)
         self.view.addSubview(setTitleButton)
-        self.view.backgroundColor = .lightGray
+        self.headerView.backgroundColor = .systemGray3
         
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            headerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             headerView.heightAnchor.constraint(equalToConstant: 220),
+            
             self.heightConstraint
         ].compactMap({$0}))
     }
+      
     
     private func setTitleButtonSetup() {
         self.view.addSubview(setTitleButton)
