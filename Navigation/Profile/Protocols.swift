@@ -16,3 +16,14 @@ protocol Setupable {
 protocol ProfileHeaderViewProtocol: AnyObject {
     func didTapStatusButton(textFieldIsVisible: Bool, completion: @escaping () -> Void)
 }
+protocol TapLikedDelegate {
+    func updateLike(indexRow: Int)
+}
+
+protocol TapImagePostDelegate {
+    func enlargePost(indexRow: Int)
+}
+
+protocol TapLikedPostDelegate {
+    func updateLikePost()
+}

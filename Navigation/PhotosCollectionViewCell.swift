@@ -9,40 +9,38 @@ import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     
-    private lazy var backView: UIView = {
-        let view = UIView()
-        view.clipsToBounds = true
-        view.layer.maskedCorners = [
-            .layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMaxYCorner
-        ]
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-  
-    lazy var photoGalleryImages: UIImageView = {
-        let photoGalleryImages = UIImageView()
-        photoGalleryImages.clipsToBounds = true
-        photoGalleryImages.translatesAutoresizingMaskIntoConstraints = false
-        return photoGalleryImages
-    }()
-
+    private var photosImageView: UIImageView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = .black
+        $0.contentMode = .scaleAspectFill
+        $0.layer.cornerRadius = 0
+        $0.clipsToBounds = true
+        return $0
+    }(UIImageView())
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView()
+        setupLayout()
     }
-        
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupView() {
-        contentView.addSubview(photoGalleryImages)
-        NSLayoutConstraint.activate([
-            photoGalleryImages.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
-            photoGalleryImages.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            photoGalleryImages.heightAnchor.constraint(equalTo: self.contentView.heightAnchor),
-            photoGalleryImages.widthAnchor.constraint(equalTo: self.contentView.widthAnchor)
-        ])
+    func setupCell(_ photo: PhotosModel) {
+        // authorLabel.text = photo.author
+        photosImageView.image = UIImage(named: photo.image)
+        
     }
     
+    private func setupLayout() {
+        contentView.addSubview(photosImageView)
+        
+        NSLayoutConstraint.activate([
+            photosImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            photosImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            photosImageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            photosImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor)
+        ])
+    }
 }
