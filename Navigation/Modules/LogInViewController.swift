@@ -24,6 +24,7 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
         setupLayout()
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapKeyboardOff(_:)))
         view.addGestureRecognizer(tap)
@@ -263,3 +264,9 @@ extension LogInViewController: UITextFieldDelegate {
     }
 }
 
+extension UITextField {
+    func indent(size:CGFloat) {
+        self.leftView = UIView(frame: CGRect(x: self.frame.minX, y: self.frame.minY, width: size, height: self.frame.height))
+        self.leftViewMode = .always
+    }
+}
