@@ -31,7 +31,7 @@ class ProfileViewController: UIViewController {
     
     func setupTableView() {
         self.view.backgroundColor = .white
-        navigationItem.title = "Custom Cell"
+        navigationItem.title = "Profile"
         
         tableView.dataSource = self
         tableView.delegate = self

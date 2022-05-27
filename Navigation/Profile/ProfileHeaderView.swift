@@ -77,6 +77,7 @@ class ProfileHeaderView: UIView {
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.black.cgColor
         textField.textColor = .black
+        textField.placeholder = "Set your status"
         textField.font = UIFont(name: "Helvetica-Regular", size: 15)
         textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
         textField.translatesAutoresizingMaskIntoConstraints = false

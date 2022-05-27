@@ -98,7 +98,7 @@ class PostViewController: UIViewController {
                 self.avatarImageView.isHidden = true
                 self.avatarImageView.alpha = 0
                 
-                self.zoomingImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: self.view.frame.height / 2)
+                self.zoomingImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: self.view.frame.height / 2.2)
                 self.zoomingImageView.center = keyWindow.center
             } completion: { _ in }
             

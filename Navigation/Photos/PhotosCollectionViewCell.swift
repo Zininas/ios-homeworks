@@ -17,7 +17,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "1"))
         imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = false
+        imageView.clipsToBounds = true
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(zoomImageView)))
         imageView.isUserInteractionEnabled = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -78,7 +78,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut) {
                 self.backView.alpha = 0.8
                 
-                self.zoomingImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: self.backView.frame.height / 2)
+                self.zoomingImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: self.backView.frame.height / 2.2)
                 self.zoomingImageView.center = keyWindow.center
             } completion: { _ in }
             
